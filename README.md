@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Parafin Assignment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) with some modification to make the packages lighter and more compliant with libraries that have fallen out of sync from the original bundled toolchain.
 
-## Available Scripts
+On the backend, I'm using Fastify with `node-fetch` to handle any requests and `dotenv` to handle building requests from environment secrets.
 
-In the project directory, you can run:
+## `api_requests` / Postman API Requests Used
 
-### `npm start`
+Included, I've exported the Postman API requests that I used in my example video. I censored the private key information, but everything else is the same as it was in the accompanying video for replicability!
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Installation And Running
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 1. Clone this repo
 
-### `npm test`
+```
+> git clone https://github.com/mfukano/Parafin-GrubDash.git
+> cd Parafin-GrubDash 
+> npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 2. Input API Keys into .env file
 
-### `npm run build`
+You can find the API keys in the Settings > API keys in the Parafin dashboard and grab the sandbox Client ID and Client Secret there.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In my `.env` file for this project, the fields I used are as follows:
+```
+PARAFIN_CLIENT_ID="<pf_client_id>"
+PARAFIN_CLIENT_SECRET="<pf_client_secret>"
+PORT="8000"
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Since this doesn't ship with a .env file to retain secrecy of my keys, please paste the above into a `.env` file that you create within this project after cloning.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 3. Generate Relevant Parafin Entities
 
-### `npm run eject`
+There are a few ways of managing this for replication:
+- Creating business, person, and bank account entities via cURL on command line
+- Importing the Postman collection `json` from the `api_requests/` directory of this repository into Postman
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Either way, these are the most important steps to obtaining valid information to input into the `person_id` field on this webapp.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 4. Running the app
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+You can use the following command to get everything running (since we have a front-end and a server to manage, I'm using the `concurrently` package to bootstrap both of them).
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+You can use the command `npm run dev` to get things started (and hopefully everything works)!
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+You can find the front-end at http://localhost:3000 (which then proxies into http://localhost:8000 to make any requests without needing to input this location into the API path requested by the front-end).

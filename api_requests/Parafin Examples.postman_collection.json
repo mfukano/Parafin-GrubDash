@@ -1,0 +1,236 @@
+{
+	"info": {
+		"_postman_id": "ac04f541-7fe1-4b5e-8659-b5e3c2886fb5",
+		"name": "Parafin Examples",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PARAFIN - Register Business",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "<sandbox_client_secret>",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "<sandbox_client_id>",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"legal_name\": \"Ambisonic Studios LLC\",\n    \"dba_name\": \"Ambisonic Studios\",\n    \"address\": {\n        \"line1\": \"1 Beach St\",\n        \"line2\": \"Ste 300\",\n        \"city\": \"San Francsico\",\n        \"state\": \"CA\",\n        \"postal_code\": \"94133\",\n        \"country\": \"US\"\n    },\n    \"established_date\": \"2013-04-20\",\n    \"incorporation_state\": \"CA\",\n    \"incorporation_type\": \"llc\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.parafin.com/v1/businesses",
+					"protocol": "https",
+					"host": [
+						"api",
+						"parafin",
+						"com"
+					],
+					"path": [
+						"v1",
+						"businesses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PARAFIN - Create Person",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "<sandbox_client_secret>",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "<sandbox_client_id>",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"first_name\": \"Mat\",\n    \"last_name\": \"Fukano\",\n    \"contact_email\": \"mat@example.com\",\n    \"contact_phone\": \"818-888-8008\",\n    \"address\": {\n        \"line1\": \"1 Beach St\",\n        \"line2\": \"Ste 300\",\n        \"city\": \"San Francsico\",\n        \"state\": \"CA\",\n        \"postal_code\": \"94133\",\n        \"country\": \"US\"\n    },\n    \"linked_businesses\": [{\n        \"id\": \"business_7a43fe0b-099d-4ecc-9791-6ff5dbca34e5\",\n        \"relationship\": {\n            \"is_beneficial_owner\": true,\n            \"is_representative\": true\n        }\n    }]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.parafin.com/v1/persons",
+					"protocol": "https",
+					"host": [
+						"api",
+						"parafin",
+						"com"
+					],
+					"path": [
+						"v1",
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PARAFIN - Register Bank Account",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "<sandbox_client_secret>",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "<sandbox_client_id>",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"business_id\": \"business_7a43fe0b-099d-4ecc-9791-6ff5dbca34e5\",\n    \"routing_number\": \"021000021\",\n    \"account_number\": {\n        \"last4\": \"1234\"\n    },\n    \"currency\": \"USD\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.parafin.com/v1/bank_accounts",
+					"protocol": "https",
+					"host": [
+						"api",
+						"parafin",
+						"com"
+					],
+					"path": [
+						"v1",
+						"bank_accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PARAFIN - Generate Capital Offer (Flex Loan)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "<sandbox_client_secret>",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "<sandbox_client_id>",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"business_id\": \"business_7a43fe0b-099d-4ecc-9791-6ff5dbca34e5\",\n    \"product_type\": \"flex_loan\",\n    \"max_amount\": 20000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.parafin.com/v1/sandbox/capital_product_offer",
+					"protocol": "https",
+					"host": [
+						"api",
+						"parafin",
+						"com"
+					],
+					"path": [
+						"v1",
+						"sandbox",
+						"capital_product_offer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PARAFIN - Fund Capital Product",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "<sandbox_client_secret>",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "<sandbox_client_id>",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"business_id\": \"business_7a43fe0b-099d-4ecc-9791-6ff5dbca34e5\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.parafin.com/v1/sandbox/fund_capital_product",
+					"protocol": "https",
+					"host": [
+						"api",
+						"parafin",
+						"com"
+					],
+					"path": [
+						"v1",
+						"sandbox",
+						"fund_capital_product"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
